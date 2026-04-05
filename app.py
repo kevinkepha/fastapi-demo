@@ -10,7 +10,7 @@ def home():
             <head>
                 <meta charset='UTF-8'>
                 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                <title> Tube</title>
+                <title>FastAPI Tube</title>
                 <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
                 <style>
                     body { background-color: #181818; color: #fff; }
@@ -18,6 +18,7 @@ def home():
                     .logo { font-size: 2rem; font-weight: bold; color: #FF0000; }
                     .search-bar { max-width: 500px; }
                     .video-card { background: #232323; border: none; }
+                    .autodeploy-banner { background: #ffeb3b; color: #222; font-weight: bold; text-align: center; padding: 1.5rem; border-radius: 1rem; margin-bottom: 2rem; font-size: 1.5rem; }
                 </style>
             </head>
             <body>
@@ -32,12 +33,13 @@ def home():
                     </div>
                 </nav>
                 <div class='container mt-5'>
+                    <div class='autodeploy-banner'>🚀 Auto-deployment is working! (Visible change at: {date})</div>
                     <div class='row g-4'>
                         <div class='col-md-4'>
                             <div class='card video-card'>
                                 <img src='https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg' class='card-img-top' alt='Video'>
                                 <div class='card-body'>
-                                    <h5 class='card-title'>Welcome to Tube!</h5>
+                                    <h5 class='card-title'>Welcome to FastAPI Tube!</h5>
                                     <p class='card-text'>Experience blazing fast web apps with Python and FastAPI. This is a YouTube-inspired demo styled with Bootstrap 5.</p>
                                 </div>
                             </div>
@@ -65,4 +67,4 @@ def home():
                 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
             </body>
         </html>
-        """
+        """.replace("{date}", "April 6, 2026")
