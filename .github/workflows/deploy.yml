@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Build Docker image
+      # Step 2: Build Docker image locally (optional, since we use Watchtower)
       - name: Build Docker image
         run: |
           docker build -t dunanabi/fastapi-demo:latest .
@@ -38,6 +38,7 @@ jobs:
           username: root
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
+            mkdir -p /root/fastapi-demo
             cd /root/fastapi-demo
-            docker-compose pull fastapi_app
-            docker-compose up -d
+            git pull origin main
+            docker-compose up -d --build fastapi_app
