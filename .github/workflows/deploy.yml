@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
+      # Step 1: Checkout code (needed to build Docker image)
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Build Docker image locally (optional, since we use Watchtower)
+      # Step 2: Build Docker image locally (optional, mainly for pushing)
       - name: Build Docker image
         run: |
           docker build -t dunanabi/fastapi-demo:latest .
@@ -30,7 +30,7 @@ jobs:
         run: |
           docker push dunanabi/fastapi-demo:latest
 
-      # Step 5: SSH to server and deploy
+      # Step 5: SSH to server and deploy Docker container
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -38,7 +38,10 @@ jobs:
           username: root
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            mkdir -p /root/fastapi-demo
-            cd /root/fastapi-demo
-            git pull origin main
-            docker-compose up -d --build fastapi_app
+            # Pull latest image from Docker Hub
+            docker pull dunanabi/fastapi-demo:latest
+            # Stop old container if exists
+            docker stop fastapi_app || true
+            docker rm fastapi_app || true
+            # Run new container
+            docker run -d --name fastapi_app -p 8675:3000 dunanabi/fastapi-demo:latest
