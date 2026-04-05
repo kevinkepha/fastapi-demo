@@ -37,7 +37,7 @@ def home():
                             <div class='card video-card'>
                                 <img src='https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg' class='card-img-top' alt='Video'>
                                 <div class='card-body'>
-                                    <h5 class='card-title'>Welcome to FastAPI Tube!</h5>
+                                    <h5 class='card-title'>Welcome to Tube!</h5>
                                     <p class='card-text'>Experience blazing fast web apps with Python and FastAPI. This is a YouTube-inspired demo styled with Bootstrap 5.</p>
                                 </div>
                             </div>
